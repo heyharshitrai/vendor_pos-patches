@@ -1,0 +1,41 @@
+From 0d39dabcad6edce00010d231cbc4f051234aad7e Mon Sep 17 00:00:00 2001
+From: Hridaya Prajapati <info.hridayaprajapati@gmail.com>
+Date: Thu, 19 Feb 2026 13:46:25 +0000
+Subject: [PATCH 8/8] services: Move libcameraservice_ext_lib_defaults to
+ select()
+
+Change-Id: Idbd2704e0672b116719fb9fbb8f83a65915fbf7f
+---
+ services/camera/libcameraservice/Android.bp | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/services/camera/libcameraservice/Android.bp b/services/camera/libcameraservice/Android.bp
+index cdd4a9f761..7cbb696a4e 100644
+--- a/services/camera/libcameraservice/Android.bp
++++ b/services/camera/libcameraservice/Android.bp
+@@ -131,7 +131,6 @@ cc_library {
+ 
+     defaults: [
+         "libcameraservice_deps",
+-        "libcameraservice_ext_lib_defaults",
+     ],
+     // Camera service source
+ 
+@@ -246,6 +245,14 @@ cc_library {
+     ] + select(soong_config_variable("camera", "package_name"), {
+         any @ flag_val: ["-DCAMERA_PACKAGE_NAME=\"" + flag_val + "\""],
+         default: [],
++    }) + select(soong_config_variable("libcameraservice", "ext_lib"), {
++        any @ flag_val: ["-DTARGET_PROVIDES_CAMERA_PROVIDER_EXT_LIB"],
++        default: [],
++    }),
++
++    whole_static_libs: select(soong_config_variable("libcameraservice", "ext_lib"), {
++        any @ flag_val: [flag_val],
++        default: ["libcameraservice_ext_lib"],
+     }),
+ }
+ 
+-- 
+2.34.1
+
