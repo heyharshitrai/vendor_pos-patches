@@ -3,7 +3,7 @@ From: someone5678 <nemui3353@gmail.com>
 Date: Wed, 31 May 2023 22:59:13 +0900
 Subject: [PATCH 3/5] Settings: Hide ADB and developer setting enable status
  [2/2]
-
+ 
 * Code is adapted from cutout force full screen
 * Give authorship
 
@@ -207,10 +207,10 @@ index 688bfc24cde..9f20209806d 100644
      <string-array name="hide_applist_hidden_apps" translatable="false">
          <item>android</item>
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 7a3f0d3e975..1a5185e689b 100644
+index 41b9c467763..4d31052eca6 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -371,4 +371,10 @@
+@@ -377,4 +377,10 @@
      <string name="hide_screen_capture_status_title">Hide screen capture status</string>
      <string name="hide_screen_capture_status_summary">Hide screen capture and screen record status from all applications. Can be convenient in some cases but may lead to privacy leaks. Need to restart applications for the change to take effect.</string>
  

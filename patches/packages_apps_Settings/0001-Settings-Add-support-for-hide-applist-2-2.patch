@@ -196,13 +196,13 @@ index 5dafc746e3d..688bfc24cde 100644
  
  </resources>
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index e02339ad9b6..4b2d651de34 100644
+index 5a136b6129c..3abb90e13b3 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -360,4 +360,11 @@
-     <string name="network_traffic_units_kilobytes">Kilobytes per second (kB/s)</string>
-     <string name="network_traffic_units_megabytes">Megabytes per second (MB/s)</string>
-     <string name="network_traffic_units_auto">Automatic (kB/s or MB/s)</string>
+@@ -366,4 +366,11 @@
+     <string name="language_picker_page">Language picker page</string>
+     <string name="search_region">Search regions</string>
+     <string name="search_region_page">Search region page</string>
 +
 +    <!-- Hide applist -->
 +    <string name="hide_applist_title">Hide applist</string>

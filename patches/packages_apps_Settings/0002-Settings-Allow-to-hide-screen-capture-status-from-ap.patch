@@ -14,10 +14,10 @@ Signed-off-by: someone5678 <someone5678@users.noreply.github.com>
  2 files changed, 10 insertions(+)
 
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 4b2d651de34..7a3f0d3e975 100644
+index 3abb90e13b3..41b9c467763 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -367,4 +367,8 @@
+@@ -373,4 +373,8 @@
      <string name="menu_show_overlay">Show overlay</string>
      <string name="menu_hide_overlay">Hide overlay</string>
  
