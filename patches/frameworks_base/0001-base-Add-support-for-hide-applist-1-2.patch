@@ -1,4 +1,4 @@
-From 48c954b5391f338e919faafc344dc3cccc010ccb Mon Sep 17 00:00:00 2001
+From 990b0014430610a6ac6e2353d2bd052cdb4e53fd Mon Sep 17 00:00:00 2001
 From: Oliver Scott <olivercscott@gmail.com>
 Date: Mon, 10 Apr 2023 12:35:40 -0400
 Subject: [PATCH 1/4] base: Add support for hide applist [1/2]

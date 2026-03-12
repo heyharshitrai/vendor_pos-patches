@@ -1,9 +1,9 @@
-From 760b66427f5996d81bf760dccc6c4e330e7cba74 Mon Sep 17 00:00:00 2001
+From ce34be7d46e3780031c91d0c137218563aa45b8f Mon Sep 17 00:00:00 2001
 From: someone5678 <nemui3353@gmail.com>
 Date: Wed, 31 May 2023 22:59:13 +0900
 Subject: [PATCH 3/5] Settings: Hide ADB and developer setting enable status
  [2/2]
- 
+
 * Code is adapted from cutout force full screen
 * Give authorship
 

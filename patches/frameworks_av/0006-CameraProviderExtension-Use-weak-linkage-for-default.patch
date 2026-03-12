@@ -1,4 +1,4 @@
-From 4cf86e68ed5f6de4c9d623c39a398ce36614ff33 Mon Sep 17 00:00:00 2001
+From 911d1c5aeb1521fb21fcfdc20c03217ad64462cb Mon Sep 17 00:00:00 2001
 From: bengris32 <bengris32@protonmail.ch>
 Date: Tue, 8 Oct 2024 11:13:21 +0100
 Subject: [PATCH 6/8] CameraProviderExtension: Use weak linkage for default

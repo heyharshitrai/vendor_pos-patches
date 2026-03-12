@@ -1,4 +1,4 @@
-From a8dcad6c04fd9f067fb890adae06629428566925 Mon Sep 17 00:00:00 2001
+From 4e39c4a43f6e0239874cef27f2ae7b19d6ed102c Mon Sep 17 00:00:00 2001
 From: bengris32 <bengris32@protonmail.ch>
 Date: Sat, 7 Dec 2024 14:16:32 +0000
 Subject: [PATCH 4/8] CameraProviderExtension: Reset strength level on torch

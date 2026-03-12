@@ -1,4 +1,4 @@
-From 758bac0c72648b928495577fded809f13e54dadb Mon Sep 17 00:00:00 2001
+From a9d4349b8fe9c6960dea459078311342344fa883 Mon Sep 17 00:00:00 2001
 From: Jyotiraditya <imjyotiraditya@pm.me>
 Date: Fri, 9 Oct 2020 10:39:59 +0530
 Subject: [PATCH 5/5] Settings: Move blur toggle to Display options.

@@ -1,4 +1,4 @@
-From 40b27d3cd697141807f200613c32c59ec9d3de1a Mon Sep 17 00:00:00 2001
+From 1c0d9d88f9e6d5a7e4671b52a80c233c6276dc17 Mon Sep 17 00:00:00 2001
 From: John Galt <johngaltfirstrun@gmail.com>
 Date: Tue, 28 Jan 2025 13:01:49 -0500
 Subject: [PATCH 7/8] CameraProviderExtension: add enabled bool and always set

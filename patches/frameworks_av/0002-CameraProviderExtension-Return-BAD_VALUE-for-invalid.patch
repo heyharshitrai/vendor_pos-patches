@@ -1,4 +1,4 @@
-From a3d84e8bed416d830be98265fc5dd1567d72fe5c Mon Sep 17 00:00:00 2001
+From e45cafc034f73b1b7390b1e18add6802ed25345c Mon Sep 17 00:00:00 2001
 From: bengris32 <bengris32@protonmail.ch>
 Date: Sat, 7 Dec 2024 14:12:05 +0000
 Subject: [PATCH 2/8] CameraProviderExtension: Return BAD_VALUE for invalid

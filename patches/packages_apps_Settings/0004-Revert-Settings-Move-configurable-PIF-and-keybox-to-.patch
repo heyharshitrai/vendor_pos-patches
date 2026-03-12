@@ -1,46 +1,43 @@
-From f2a0e99c3b9a77bc9780afe87a36b5a8b0f8f59e Mon Sep 17 00:00:00 2001
+From db7270b7deca513cda544c3bfcea9e65308f7725 Mon Sep 17 00:00:00 2001
 From: thepriyanshujangid <priyanshujangid@yahoo.com>
 Date: Wed, 18 Feb 2026 15:26:11 +0000
 Subject: [PATCH 4/5] Revert "Settings: Move configurable PIF and keybox to
  Developer options"
- 
+
 This reverts commit f14b14c444fbf8122082af413643d7815c78d706.
 ---
- res/values/custom_strings.xml                 | 12 ++--
+ res/values/custom_strings.xml                 |  8 +--
  res/xml/apps.xml                              | 12 ++++
  res/xml/development_settings.xml              | 13 -----
  .../applications/AppDashboardFragment.java    | 57 +++++++++++++++++++
  .../KeyboxDataPreference.java                 |  2 +-
  .../PifDataPreference.java                    |  2 +-
  .../DevelopmentSettingsDashboardFragment.java | 52 -----------------
- 7 files changed, 77 insertions(+), 73 deletions(-)
+ 7 files changed, 75 insertions(+), 71 deletions(-)
  rename src/com/android/settings/{development => applications}/KeyboxDataPreference.java (99%)
  rename src/com/android/settings/{development => applications}/PifDataPreference.java (98%)
 
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 4d31052eca6..d7ec3b034d3 100644
+index 4d31052eca6..d8cc4b75dfe 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -326,13 +326,13 @@
+@@ -326,12 +326,12 @@
      <string name="app_list_loading">Loading apps\u2026</string>
  
      <!-- Keybox Data -->
 -    <string name="keybox_data_title">Configure keybox XML</string>
 -    <string name="keybox_data_summary">Configure system-wide key attestation spoofing. Tap Delete to reset to defaults.</string>
--
 +    <string name="keybox_data_title">Select keybox XML to spoof</string>
 +    <string name="keybox_data_summary">Select keybox XML used for key attestation spoofing for all apps system wide. Click the delete button in order to reset the keybox data values used by the system.</string>
-+ 
+ 
      <!-- Pif Data -->
 -    <string name="pif_data_title">Configure PIF JSON</string>
 -    <string name="pif_data_summary">Configure PIF JSON used to spoof properties for GMS and the Play Store. Tap Delete to revert to dynamic defaults.</string>
--
 +    <string name="pif_data_title">Select PIF JSON to spoof</string>
 +    <string name="pif_data_summary">Select PIF JSON used for prop attestation spoofing for google mobile services and play store. Click the delete button in order to reset the PIF data props and use dynamic PIF props which are used by default.</string>
-+ 
+ 
      <!-- Screenshot shutter -->
      <string name="screenshot_shutter_sound_title">Screenshot sound</string>
- 
 diff --git a/res/xml/apps.xml b/res/xml/apps.xml
 index b6874973b22..ff69059b6bc 100644
 --- a/res/xml/apps.xml

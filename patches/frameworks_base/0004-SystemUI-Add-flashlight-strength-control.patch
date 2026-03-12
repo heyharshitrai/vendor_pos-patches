@@ -1,4 +1,4 @@
-From 546ebeadcf5b9280ffa80b2a9f6bbe52168b786e Mon Sep 17 00:00:00 2001
+From 942978a83c3c2c7c6bbe9b0afd7644dabc3bf96b Mon Sep 17 00:00:00 2001
 From: Abhay Singh Gill <abhaygill017@gmail.com>
 Date: Sat, 13 Sep 2025 21:32:55 +0530
 Subject: [PATCH 4/4] SystemUI: Add flashlight strength control

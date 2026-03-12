@@ -1,4 +1,4 @@
-From 0d39dabcad6edce00010d231cbc4f051234aad7e Mon Sep 17 00:00:00 2001
+From 7c3ae2c11fc089d9930f82c559274286dd361470 Mon Sep 17 00:00:00 2001
 From: Hridaya Prajapati <info.hridayaprajapati@gmail.com>
 Date: Thu, 19 Feb 2026 13:46:25 +0000
 Subject: [PATCH 8/8] services: Move libcameraservice_ext_lib_defaults to

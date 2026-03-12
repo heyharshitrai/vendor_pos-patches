@@ -1,4 +1,4 @@
-From 40a1596616a763c780450b27bbdb7b84e9ec476f Mon Sep 17 00:00:00 2001
+From 76d1b56e9f6c076303d6ab9a921c3403fc43801e Mon Sep 17 00:00:00 2001
 From: Dhina17 <dhinalogu@gmail.com>
 Date: Sun, 26 May 2024 15:29:14 +0530
 Subject: [PATCH 1/8] camera: Add extension to control torch light strength
