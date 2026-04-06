@@ -1,4 +1,4 @@
-From db7270b7deca513cda544c3bfcea9e65308f7725 Mon Sep 17 00:00:00 2001
+From 2c30d1ba605c7d33142834c1c1efcb22cbabb8b2 Mon Sep 17 00:00:00 2001
 From: thepriyanshujangid <priyanshujangid@yahoo.com>
 Date: Wed, 18 Feb 2026 15:26:11 +0000
 Subject: [PATCH 4/5] Revert "Settings: Move configurable PIF and keybox to
