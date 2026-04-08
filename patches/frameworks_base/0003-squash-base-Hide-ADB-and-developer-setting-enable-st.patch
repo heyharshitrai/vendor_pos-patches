@@ -1,7 +1,7 @@
-From 0de1dc73859fe3ad4898c71b4c8d97f1bb71ce57 Mon Sep 17 00:00:00 2001
+From 72e991815e18555b870ffe98a4fe1e5db1c1fc4b Mon Sep 17 00:00:00 2001
 From: someone5678 <nemui3353@gmail.com>
 Date: Wed, 31 May 2023 22:33:20 +0900
-Subject: [PATCH 3/4] [squash] base: Hide ADB and developer setting enable
+Subject: [PATCH 3/3] [squash] base: Hide ADB and developer setting enable
  status [1/2]
 
 * Some apps check whether ADB or developer setting is enabled

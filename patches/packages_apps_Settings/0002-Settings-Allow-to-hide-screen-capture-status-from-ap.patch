@@ -1,4 +1,4 @@
-From 99ee4c8e3f7218b915f73569a60ccfa99adbac9b Mon Sep 17 00:00:00 2001
+From 162d50240140bc86abbb32202f9a8c2a36e3e682 Mon Sep 17 00:00:00 2001
 From: someone5678 <someone5678@users.noreply.github.com>
 Date: Tue, 21 May 2024 10:13:17 -0400
 Subject: [PATCH 2/5] Settings: Allow to hide screen capture status from apps

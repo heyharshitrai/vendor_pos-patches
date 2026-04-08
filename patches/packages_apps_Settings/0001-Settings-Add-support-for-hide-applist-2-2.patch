@@ -1,4 +1,4 @@
-From 1dfc99d76ac179bd51f5e1d535820254b563201d Mon Sep 17 00:00:00 2001
+From a4dd251295b46b0bbaf4aa87e010f2c6b0b3ad4b Mon Sep 17 00:00:00 2001
 From: someone5678 <59456192+someone5678@users.noreply.github.com>
 Date: Sat, 7 Dec 2024 10:48:32 +0900
 Subject: [PATCH 1/5] Settings: Add support for hide applist [2/2]

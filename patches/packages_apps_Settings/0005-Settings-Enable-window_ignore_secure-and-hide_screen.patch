@@ -1,4 +1,4 @@
-From 5c86e056d08b52d274e16fcb8c8c107af4fa7aa7 Mon Sep 17 00:00:00 2001
+From 38408f528e2b1c635e5f74f94be8aa44fd4fd629 Mon Sep 17 00:00:00 2001
 From: BlueHeart01 <sayankumbhakar123@gmail.com>
 Date: Mon, 6 Apr 2026 17:20:33 +0000
 Subject: [PATCH 5/5] Settings: Enable `window_ignore_secure` and
