@@ -1,7 +1,7 @@
-From 5db55fa4ae073ef1ffd29a04a331610da78fe97a Mon Sep 17 00:00:00 2001
+From 02125ecd005ad0f33ead05fac03031ecb461c2f3 Mon Sep 17 00:00:00 2001
 From: thepriyanshujangid <priyanshujangid@yahoo.com>
 Date: Wed, 18 Feb 2026 15:26:11 +0000
-Subject: [PATCH 4/5] Revert "Settings: Move configurable PIF and keybox to
+Subject: [PATCH 4/6] Revert "Settings: Move configurable PIF and keybox to
  Developer options"
 
 This reverts commit f14b14c444fbf8122082af413643d7815c78d706.
@@ -18,10 +18,10 @@ This reverts commit f14b14c444fbf8122082af413643d7815c78d706.
  rename src/com/android/settings/{development => applications}/PifDataPreference.java (98%)
 
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 4d31052eca6..d8cc4b75dfe 100644
+index c8ffbb025e3..f53367b1788 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -326,12 +326,12 @@
+@@ -327,12 +327,12 @@
      <string name="app_list_loading">Loading apps\u2026</string>
  
      <!-- Keybox Data -->

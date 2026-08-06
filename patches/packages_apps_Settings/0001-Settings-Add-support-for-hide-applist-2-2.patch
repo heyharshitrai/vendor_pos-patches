@@ -1,7 +1,7 @@
-From a4dd251295b46b0bbaf4aa87e010f2c6b0b3ad4b Mon Sep 17 00:00:00 2001
+From 67921d63c0cc0b0881949c2047ab3be4e10bca0f Mon Sep 17 00:00:00 2001
 From: someone5678 <59456192+someone5678@users.noreply.github.com>
 Date: Sat, 7 Dec 2024 10:48:32 +0900
-Subject: [PATCH 1/5] Settings: Add support for hide applist [2/2]
+Subject: [PATCH 1/6] Settings: Add support for hide applist [2/2]
 
 * Code is adapted from cutout force full screen
 * Give authorship
@@ -196,10 +196,10 @@ index 5dafc746e3d..688bfc24cde 100644
  
  </resources>
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 5a136b6129c..3abb90e13b3 100644
+index 36420fd1834..ec36df961dc 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -366,4 +366,11 @@
+@@ -367,4 +367,11 @@
      <string name="language_picker_page">Language picker page</string>
      <string name="search_region">Search regions</string>
      <string name="search_region_page">Search region page</string>

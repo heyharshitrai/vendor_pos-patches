@@ -1,8 +1,8 @@
-From 38408f528e2b1c635e5f74f94be8aa44fd4fd629 Mon Sep 17 00:00:00 2001
+From f544e32a75f27c30c0e5dadee84fcdf8455d2499 Mon Sep 17 00:00:00 2001
 From: BlueHeart01 <sayankumbhakar123@gmail.com>
 Date: Mon, 6 Apr 2026 17:20:33 +0000
-Subject: [PATCH 5/5] Settings: Enable `window_ignore_secure` and
- `hide_screen_capture_status`  by default
+Subject: [PATCH 5/6] Settings: Enable `window_ignore_secure` and
+ `hide_screen_capture_status` by default
 
 Change-Id: I245a397ff84a6fbd3d111353e53833f9861595e6
 ---
