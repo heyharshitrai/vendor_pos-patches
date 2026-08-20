@@ -10,21 +10,12 @@ Change-Id: I8caa9030f4ff44babda5a778d0e0d6849e1e4d1b
 Signed-off-by: someone5678 <59456192+someone5678@users.noreply.github.com>
 Signed-off-by: Saikrishna1504 <saikrishna26918@gmail.com>
 ---
- core/java/android/provider/Settings.java      |   7 +
- .../util/custom/HideAppListUtils.java         | 115 ++++++++++++++
- .../validators/SecureSettingsValidators.java  |   1 +
- .../android/server/HideAppListService.java    |  84 +++++++++++
- .../com/android/server/pm/ComputerEngine.java | 140 +++++++++++++++++-
- .../java/com/android/server/SystemServer.java |   2 +
- 6 files changed, 347 insertions(+), 2 deletions(-)
- create mode 100644 core/java/com/android/internal/util/custom/HideAppListUtils.java
- create mode 100644 services/core/java/com/android/server/HideAppListService.java
 
 diff --git a/core/java/android/provider/Settings.java b/core/java/android/provider/Settings.java
-index c0e8d817b709..6ad9b3744068 100644
+index 8abd07a20..aef02ad65 100644
 --- a/core/java/android/provider/Settings.java
 +++ b/core/java/android/provider/Settings.java
-@@ -13647,6 +13647,13 @@ public final class Settings {
+@@ -14003,6 +14003,13 @@ public final class Settings {
           */
          public static final String NETWORK_TRAFFIC_UNITS = "network_traffic_units";
  
@@ -40,7 +31,7 @@ index c0e8d817b709..6ad9b3744068 100644
           * process when restoring historical backup datasets.
 diff --git a/core/java/com/android/internal/util/custom/HideAppListUtils.java b/core/java/com/android/internal/util/custom/HideAppListUtils.java
 new file mode 100644
-index 000000000000..dc9c2d22d76d
+index 000000000..dc9c2d22d
 --- /dev/null
 +++ b/core/java/com/android/internal/util/custom/HideAppListUtils.java
 @@ -0,0 +1,115 @@
@@ -160,10 +151,10 @@ index 000000000000..dc9c2d22d76d
 +    }
 +}
 diff --git a/packages/SettingsProvider/src/android/provider/settings/validators/SecureSettingsValidators.java b/packages/SettingsProvider/src/android/provider/settings/validators/SecureSettingsValidators.java
-index 66464ad082ec..962ca0fa25d8 100644
+index 0bd297a34..1d7e4248d 100644
 --- a/packages/SettingsProvider/src/android/provider/settings/validators/SecureSettingsValidators.java
 +++ b/packages/SettingsProvider/src/android/provider/settings/validators/SecureSettingsValidators.java
-@@ -531,5 +531,6 @@ public class SecureSettingsValidators {
+@@ -563,5 +563,6 @@ public class SecureSettingsValidators {
          VALIDATORS.put(Secure.NETWORK_TRAFFIC_MODE, new InclusiveIntegerRangeValidator(0, 3));
          VALIDATORS.put(Secure.NETWORK_TRAFFIC_AUTOHIDE, BOOLEAN_VALIDATOR);
          VALIDATORS.put(Secure.NETWORK_TRAFFIC_UNITS, new InclusiveIntegerRangeValidator(0, 4));
@@ -172,7 +163,7 @@ index 66464ad082ec..962ca0fa25d8 100644
  }
 diff --git a/services/core/java/com/android/server/HideAppListService.java b/services/core/java/com/android/server/HideAppListService.java
 new file mode 100644
-index 000000000000..5253424858bc
+index 000000000..525342485
 --- /dev/null
 +++ b/services/core/java/com/android/server/HideAppListService.java
 @@ -0,0 +1,84 @@
@@ -261,10 +252,10 @@ index 000000000000..5253424858bc
 +    }
 +}
 diff --git a/services/core/java/com/android/server/pm/ComputerEngine.java b/services/core/java/com/android/server/pm/ComputerEngine.java
-index 3f0c0e1aead4..1ecdfeca73c5 100644
+index 4ce3cabdd..76dfc005c 100644
 --- a/services/core/java/com/android/server/pm/ComputerEngine.java
 +++ b/services/core/java/com/android/server/pm/ComputerEngine.java
-@@ -178,6 +178,8 @@ import java.util.Objects;
+@@ -180,6 +180,8 @@ import java.util.Objects;
  import java.util.Set;
  import java.util.UUID;
  
@@ -273,7 +264,7 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
  /**
   * This class contains the implementation of the Computer functions.  It
   * is entirely self-contained - it has no implicit access to
-@@ -978,6 +980,10 @@ public class ComputerEngine implements Computer {
+@@ -984,6 +986,10 @@ public class ComputerEngine implements Computer {
  
      public final ApplicationInfo getApplicationInfo(String packageName,
              @PackageManager.ApplicationInfoFlagsBits long flags, int userId) {
@@ -284,7 +275,7 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
          return getApplicationInfoInternal(packageName, flags, Binder.getCallingUid(), userId);
      }
  
-@@ -991,6 +997,10 @@ public class ComputerEngine implements Computer {
+@@ -997,6 +1003,10 @@ public class ComputerEngine implements Computer {
              @PackageManager.ApplicationInfoFlagsBits long flags,
              int filterCallingUid, int userId) {
          if (!mUserManager.exists(userId)) return null;
@@ -295,12 +286,12 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
          flags = updateFlagsForApplication(flags, userId);
  
          if (!isRecentsAccessingChildProfiles(Binder.getCallingUid(), userId)) {
-@@ -1001,6 +1011,64 @@ public class ComputerEngine implements Computer {
- 
+@@ -1008,6 +1018,65 @@ public class ComputerEngine implements Computer {
          return getApplicationInfoInternalBody(packageName, flags, filterCallingUid, userId);
      }
-+    
-+     private boolean canHideApp(int callingUid, String packageName) {
+ 
++
++    private boolean canHideApp(int callingUid, String packageName) {
 +        if (!isBootCompleted() || mContext == null || mContext.getPackageManager() == null) {
 +            return false;
 +        }
@@ -315,38 +306,38 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
 +        boolean isFinsky = callingPackage.contains("com.android.vending");
 +
 +        if (isFinsky) return true;
-+        
++
 +        if (packageName == null || TextUtils.isEmpty(packageName)) {
 +            return false;
 +        }
-+        
++
 +        // the calling package is itself, no need to hide
 +        if (callingPackage.contains(packageName)) return false;
 +
-+        // we only want to hide these apps from playstore 
++        // we only want to hide these apps from playstore
 +        // to avoid these apps from being updated, so abort if
 +        // calling package is not finsky
-+        if (packageName.contains("youtube") 
++        if (packageName.contains("youtube")
 +            || packageName.contains("microg")
 +            || packageName.contains("revanced")
 +            || packageName.contains("gms")) {
 +            return false;
 +        }
 +
-+        // this is for banking apps, but we need to make sure first that 
++        // this is for banking apps, but we need to make sure first that
 +        // we arent hiding app infos from sandbox/system processes
-+        return !isCallerSystem(callingUid) 
++        return !isCallerSystem(callingUid)
 +            && !Process.isIsolated(callingUid)
 +            && !Process.isSdkSandboxUid(callingUid);
 +    }
-+    
-+    public ParceledListSlice<PackageInfo> recreatePackageList(
-+            int callingUid, Context context, int userId, ParceledListSlice<PackageInfo> list) {
++
++    public PackageInfoList recreatePackageList(
++            int callingUid, Context context, int userId, PackageInfoList list) {
 +        List<PackageInfo> appList = new ArrayList<>(list.getList());
-+        if (!canHideApp(callingUid, null)) return new ParceledListSlice<>(appList);
++        if (!canHideApp(callingUid, null)) return new PackageInfoList(appList);
 +        Set<String> hiddenApps = HideAppListUtils.getApps(context);
 +        appList.removeIf(info -> hiddenApps.contains(info.packageName));
-+        return new ParceledListSlice<>(appList);
++        return new PackageInfoList(appList);
 +    }
 +
 +    public List<ApplicationInfo> recreateApplicationList(
@@ -357,10 +348,11 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
 +        appList.removeIf(info -> hiddenApps.contains(info.packageName));
 +        return appList;
 +    }
- 
++
      protected ApplicationInfo getApplicationInfoInternalBody(String packageName,
              @PackageManager.ApplicationInfoFlagsBits long flags,
-@@ -1581,6 +1649,10 @@ public class ComputerEngine implements Computer {
+             int filterCallingUid, int userId) {
+@@ -1587,6 +1656,10 @@ public class ComputerEngine implements Computer {
  
      public final PackageInfo getPackageInfo(String packageName,
              @PackageManager.PackageInfoFlagsBits long flags, int userId) {
@@ -371,20 +363,21 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
          return getPackageInfoInternal(packageName, PackageManager.VERSION_CODE_HIGHEST,
                  flags, Binder.getCallingUid(), userId);
      }
-@@ -1704,7 +1776,8 @@ public class ComputerEngine implements Computer {
-         enforceCrossUserPermission(callingUid, userId, false /* requireFullPermission */,
-                 false /* checkShell */, "get installed packages");
+@@ -1713,7 +1786,8 @@ public class ComputerEngine implements Computer {
+         Slog.i(TAG, "getInstalledPackages: callingUid=" + callingUid + " flags=" + flags
+                + " updatedFlags=" + updatedFlags + " userId=" + userId);
  
--        return getInstalledPackagesBody(flags, userId, callingUid);
+-        return getInstalledPackagesBody(updatedFlags, userId, callingUid);
 +        return recreatePackageList(callingUid, mContext,
-+                        userId, getInstalledPackagesBody(flags, userId, callingUid));
++                        userId, getInstalledPackagesBody(updatedFlags, userId, callingUid));
      }
  
-     protected ParceledListSlice<PackageInfo> getInstalledPackagesBody(long flags, int userId,
-@@ -2506,6 +2579,66 @@ public class ComputerEngine implements Computer {
+     private PackageInfoList getInstalledPackagesBody(long flags, int userId, int callingUid) {
+@@ -2538,6 +2612,67 @@ public class ComputerEngine implements Computer {
          }
      }
  
++
 +    private static boolean isBootCompleted() {
 +        return android.os.SystemProperties.getBoolean("sys.boot_completed", false);
 +    }
@@ -448,7 +441,7 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
      /**
       * Returns whether or not access to the application should be filtered.
       * <p>
-@@ -2533,6 +2666,9 @@ public class ComputerEngine implements Computer {
+@@ -2565,6 +2700,9 @@ public class ComputerEngine implements Computer {
          final boolean callerIsInstantApp = instantAppPkgName != null;
          final boolean packageArchivedForUser = ps != null && PackageArchiver.isArchived(
                  ps.getUserStateOrDefault(userId));
@@ -458,7 +451,7 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
          // Don't treat hiddenUntilInstalled as an uninstalled state, phone app needs to access
          // these hidden application details to customize carrier apps. Also, allowing the system
          // caller accessing to application across users.
-@@ -4691,7 +4827,7 @@ public class ComputerEngine implements Computer {
+@@ -4763,7 +4901,7 @@ public class ComputerEngine implements Computer {
              }
          }
  
@@ -468,10 +461,10 @@ index 3f0c0e1aead4..1ecdfeca73c5 100644
  
      @Nullable
 diff --git a/services/java/com/android/server/SystemServer.java b/services/java/com/android/server/SystemServer.java
-index c1bfbb330b96..bdfba04452d0 100644
+index 99aa6afc4..271dc0a90 100644
 --- a/services/java/com/android/server/SystemServer.java
 +++ b/services/java/com/android/server/SystemServer.java
-@@ -2898,6 +2898,8 @@ public final class SystemServer implements Dumpable {
+@@ -2921,6 +2921,8 @@ public final class SystemServer implements Dumpable {
              t.traceBegin("AttestationService");
              mSystemServiceManager.startService(AttestationService.class);
              t.traceEnd();
@@ -480,6 +473,3 @@ index c1bfbb330b96..bdfba04452d0 100644
          }
  
          t.traceBegin("StartMediaProjectionManager");
--- 
-2.34.1
-

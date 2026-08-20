@@ -16,24 +16,9 @@ Co-authored-by: cjh1249131356 <cjh1249131356@gmail.com>
 Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
 Change-Id: I0c0ea99477e3045ff218b077ec547dba23ca6262
 ---
- res/layout/hide_applist_layout.xml            |  27 ++
- res/layout/hide_applist_list_item.xml         |  65 ++++
- res/menu/hide_applist_menu.xml                |  33 ++
- res/values/custom_arrays.xml                  |  10 +
- res/values/custom_strings.xml                 |   7 +
- res/xml/hide_applist_prefs.xml                |  11 +
- res/xml/more_security_privacy_settings.xml    |   6 +
- .../privacy/HideAppListStatusSettings.kt      | 321 ++++++++++++++++++
- 8 files changed, 480 insertions(+)
- create mode 100644 res/layout/hide_applist_layout.xml
- create mode 100644 res/layout/hide_applist_list_item.xml
- create mode 100644 res/menu/hide_applist_menu.xml
- create mode 100644 res/xml/hide_applist_prefs.xml
- create mode 100644 src/com/android/settings/custom/privacy/HideAppListStatusSettings.kt
-
 diff --git a/res/layout/hide_applist_layout.xml b/res/layout/hide_applist_layout.xml
 new file mode 100644
-index 00000000000..3d5f719eff5
+index 0000000..3d5f719
 --- /dev/null
 +++ b/res/layout/hide_applist_layout.xml
 @@ -0,0 +1,27 @@
@@ -66,7 +51,7 @@ index 00000000000..3d5f719eff5
 +</FrameLayout>
 diff --git a/res/layout/hide_applist_list_item.xml b/res/layout/hide_applist_list_item.xml
 new file mode 100644
-index 00000000000..5ff94e19953
+index 0000000..5ff94e1
 --- /dev/null
 +++ b/res/layout/hide_applist_list_item.xml
 @@ -0,0 +1,65 @@
@@ -137,7 +122,7 @@ index 00000000000..5ff94e19953
 +</LinearLayout>
 diff --git a/res/menu/hide_applist_menu.xml b/res/menu/hide_applist_menu.xml
 new file mode 100644
-index 00000000000..5681ff614d7
+index 0000000..5681ff6
 --- /dev/null
 +++ b/res/menu/hide_applist_menu.xml
 @@ -0,0 +1,33 @@
@@ -175,14 +160,13 @@ index 00000000000..5681ff614d7
 +        android:showAsAction="never" />
 +</menu>
 diff --git a/res/values/custom_arrays.xml b/res/values/custom_arrays.xml
-index 5dafc746e3d..688bfc24cde 100644
+index 3a0aba2..2a280a0 100644
 --- a/res/values/custom_arrays.xml
 +++ b/res/values/custom_arrays.xml
-@@ -50,6 +50,16 @@
-         <item>2</item>
-         <item>3</item>
-         <item>4</item>
-+
+@@ -84,4 +84,15 @@
+         <item>es-US</item>
+     </array>
+ 
 +    <!-- Apps list to hide from Hide developer status setting -->
 +    <string-array name="hide_applist_hidden_apps" translatable="false">
 +        <item>android</item>
@@ -192,28 +176,29 @@ index 5dafc746e3d..688bfc24cde 100644
 +        <item>com.android.chrome</item>
 +        <item>com.android.webview</item>
 +        <item>com.google.android.webview</item>
-     </string-array>
- 
++    </string-array>
++
  </resources>
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 5a136b6129c..3abb90e13b3 100644
+index ce7a9d2..4b9d518 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -366,4 +366,11 @@
-     <string name="language_picker_page">Language picker page</string>
+@@ -401,6 +401,12 @@
      <string name="search_region">Search regions</string>
      <string name="search_region_page">Search region page</string>
-+
+ 
 +    <!-- Hide applist -->
 +    <string name="hide_applist_title">Hide applist</string>
 +    <string name="hide_applist_summary">Prevent apps from checking selected apps from appslist</string>
 +    <string name="menu_show_overlay">Show overlay</string>
 +    <string name="menu_hide_overlay">Hide overlay</string>
 +
- </resources>
+     <!-- Expressive QR -->
+     <string name="wifi_qr_code_animation_control">pause the animation</string>
+ 
 diff --git a/res/xml/hide_applist_prefs.xml b/res/xml/hide_applist_prefs.xml
 new file mode 100644
-index 00000000000..7193f192d0c
+index 0000000..7193f19
 --- /dev/null
 +++ b/res/xml/hide_applist_prefs.xml
 @@ -0,0 +1,11 @@
@@ -229,23 +214,25 @@ index 00000000000..7193f192d0c
 +
 +</PreferenceScreen>
 diff --git a/res/xml/more_security_privacy_settings.xml b/res/xml/more_security_privacy_settings.xml
-index 45e2f196ec0..523b3acaa34 100644
+index 6dc0d0a..d4bc6dc 100644
 --- a/res/xml/more_security_privacy_settings.xml
 +++ b/res/xml/more_security_privacy_settings.xml
-@@ -237,4 +237,10 @@
+@@ -244,6 +244,12 @@
          android:summary="@string/ignore_window_secure_summary"
          android:defaultValue="false"/>
  
-+        <Preference
-+            android:key="hide_applist_setting"
-+            android:title="@string/hide_applist_title"
-+            android:summary="@string/hide_applist_summary"
-+            android:fragment="com.android.settings.custom.privacy.HideAppListSettings" />
++    <Preference
++        android:key="hide_applist_setting"
++        android:title="@string/hide_applist_title"
++        android:summary="@string/hide_applist_summary"
++        android:fragment="com.android.settings.custom.privacy.HideAppListSettings" />
 +
- </PreferenceScreen>
+     <Preference
+         android:order="310"
+         android:key="binary_transparency_settings"
 diff --git a/src/com/android/settings/custom/privacy/HideAppListStatusSettings.kt b/src/com/android/settings/custom/privacy/HideAppListStatusSettings.kt
 new file mode 100644
-index 00000000000..cf58020399b
+index 0000000..cf58020
 --- /dev/null
 +++ b/src/com/android/settings/custom/privacy/HideAppListStatusSettings.kt
 @@ -0,0 +1,321 @@
@@ -570,6 +557,3 @@ index 00000000000..cf58020399b
 +            }
 +    }
 +}
--- 
-2.34.1
-

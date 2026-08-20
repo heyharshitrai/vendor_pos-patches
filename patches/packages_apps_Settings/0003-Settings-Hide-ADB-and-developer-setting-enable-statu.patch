@@ -15,24 +15,9 @@ Co-authored-by: cjh1249131356 <cjh1249131356@gmail.com>
 Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
 Signed-off-by: someone5678 <nemui3353@gmail.com>
 ---
- res/layout/hide_developer_status_layout.xml   |  25 ++
- .../hide_developer_status_list_item.xml       |  76 +++++
- res/menu/hide_developer_status_menu.xml       |  36 ++
- res/values/custom_arrays.xml                  |   9 +
- res/values/custom_strings.xml                 |   6 +
- res/xml/more_security_privacy_settings.xml    |   7 +
- ...deDeveloperStatusPreferenceController.java |  51 +++
- .../security/HideDeveloperStatusSettings.kt   | 318 ++++++++++++++++++
- 8 files changed, 528 insertions(+)
- create mode 100644 res/layout/hide_developer_status_layout.xml
- create mode 100644 res/layout/hide_developer_status_list_item.xml
- create mode 100644 res/menu/hide_developer_status_menu.xml
- create mode 100644 src/com/android/settings/security/HideDeveloperStatusPreferenceController.java
- create mode 100644 src/com/android/settings/security/HideDeveloperStatusSettings.kt
-
 diff --git a/res/layout/hide_developer_status_layout.xml b/res/layout/hide_developer_status_layout.xml
 new file mode 100644
-index 00000000000..7cfedf5c1b8
+index 0000000..7cfedf5
 --- /dev/null
 +++ b/res/layout/hide_developer_status_layout.xml
 @@ -0,0 +1,25 @@
@@ -63,7 +48,7 @@ index 00000000000..7cfedf5c1b8
 +</FrameLayout>
 diff --git a/res/layout/hide_developer_status_list_item.xml b/res/layout/hide_developer_status_list_item.xml
 new file mode 100644
-index 00000000000..d048f12a1b6
+index 0000000..d048f12
 --- /dev/null
 +++ b/res/layout/hide_developer_status_list_item.xml
 @@ -0,0 +1,76 @@
@@ -145,7 +130,7 @@ index 00000000000..d048f12a1b6
 +</LinearLayout>
 diff --git a/res/menu/hide_developer_status_menu.xml b/res/menu/hide_developer_status_menu.xml
 new file mode 100644
-index 00000000000..d0b638028a9
+index 0000000..d0b6380
 --- /dev/null
 +++ b/res/menu/hide_developer_status_menu.xml
 @@ -0,0 +1,36 @@
@@ -186,14 +171,12 @@ index 00000000000..d0b638028a9
 +        android:showAsAction="never" />
 +</menu>
 diff --git a/res/values/custom_arrays.xml b/res/values/custom_arrays.xml
-index 688bfc24cde..9f20209806d 100644
+index 2a280a0..57d4358 100644
 --- a/res/values/custom_arrays.xml
 +++ b/res/values/custom_arrays.xml
-@@ -50,7 +50,16 @@
-         <item>2</item>
-         <item>3</item>
-         <item>4</item>
-+    </string-array>
+@@ -84,6 +84,14 @@
+         <item>es-US</item>
+     </array>
  
 +    <!-- Apps list to hide from Hide developer status setting -->
 +    <string-array name="hide_developer_status_hidden_apps" translatable="false">
@@ -202,15 +185,15 @@ index 688bfc24cde..9f20209806d 100644
 +        <item>com.android.systemui</item>
 +        <item>com.android.shell</item>
 +    </string-array>
-+    
++
      <!-- Apps list to hide from Hide developer status setting -->
      <string-array name="hide_applist_hidden_apps" translatable="false">
          <item>android</item>
 diff --git a/res/values/custom_strings.xml b/res/values/custom_strings.xml
-index 41b9c467763..4d31052eca6 100644
+index 35c6f05..0e63917 100644
 --- a/res/values/custom_strings.xml
 +++ b/res/values/custom_strings.xml
-@@ -377,4 +377,10 @@
+@@ -411,6 +411,12 @@
      <string name="hide_screen_capture_status_title">Hide screen capture status</string>
      <string name="hide_screen_capture_status_summary">Hide screen capture and screen record status from all applications. Can be convenient in some cases but may lead to privacy leaks. Need to restart applications for the change to take effect.</string>
  
@@ -220,26 +203,30 @@ index 41b9c467763..4d31052eca6 100644
 +    <string name="hide_developer_status_title">Hide developer status</string>
 +    <string name="hide_developer_status_summary">Hide developer status from apps</string>
 +
- </resources>
+     <!-- Expressive QR -->
+     <string name="wifi_qr_code_animation_control">pause the animation</string>
+ 
 diff --git a/res/xml/more_security_privacy_settings.xml b/res/xml/more_security_privacy_settings.xml
-index 588c35a9f49..ff91cefc5c2 100644
+index 1da85f0..16f52c6 100644
 --- a/res/xml/more_security_privacy_settings.xml
 +++ b/res/xml/more_security_privacy_settings.xml
-@@ -249,4 +249,11 @@
-             android:summary="@string/hide_screen_capture_status_summary"
-             android:defaultValue="false"/>
+@@ -256,6 +256,13 @@
+         android:summary="@string/hide_screen_capture_status_summary"
+         android:defaultValue="false"/>
  
-+        <Preference
-+            android:key="hide_developer_status_settings"
-+            android:title="@string/hide_developer_status_title"
-+            android:summary="@string/hide_developer_status_summary"
-+            android:fragment="com.android.settings.security.HideDeveloperStatusSettings"
-+            settings:controller="com.android.settings.security.HideDeveloperStatusPreferenceController" />
++    <Preference
++        android:key="hide_developer_status_settings"
++        android:title="@string/hide_developer_status_title"
++        android:summary="@string/hide_developer_status_summary"
++        android:fragment="com.android.settings.security.HideDeveloperStatusSettings"
++        settings:controller="com.android.settings.security.HideDeveloperStatusPreferenceController" />
 +
- </PreferenceScreen>
+     <Preference
+         android:order="310"
+         android:key="binary_transparency_settings"
 diff --git a/src/com/android/settings/security/HideDeveloperStatusPreferenceController.java b/src/com/android/settings/security/HideDeveloperStatusPreferenceController.java
 new file mode 100644
-index 00000000000..0d053bc1874
+index 0000000..0d053bc
 --- /dev/null
 +++ b/src/com/android/settings/security/HideDeveloperStatusPreferenceController.java
 @@ -0,0 +1,51 @@
@@ -296,7 +283,7 @@ index 00000000000..0d053bc1874
 +}
 diff --git a/src/com/android/settings/security/HideDeveloperStatusSettings.kt b/src/com/android/settings/security/HideDeveloperStatusSettings.kt
 new file mode 100644
-index 00000000000..02ba2db412f
+index 0000000..02ba2db
 --- /dev/null
 +++ b/src/com/android/settings/security/HideDeveloperStatusSettings.kt
 @@ -0,0 +1,318 @@
@@ -618,6 +605,3 @@ index 00000000000..02ba2db412f
 +        }
 +    }
 +}
--- 
-2.34.1
-

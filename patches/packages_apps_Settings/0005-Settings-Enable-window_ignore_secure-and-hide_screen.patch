@@ -6,31 +6,25 @@ Subject: [PATCH 5/5] Settings: Enable `window_ignore_secure` and
 
 Change-Id: I245a397ff84a6fbd3d111353e53833f9861595e6
 ---
- res/xml/more_security_privacy_settings.xml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
 diff --git a/res/xml/more_security_privacy_settings.xml b/res/xml/more_security_privacy_settings.xml
-index ff91cefc5c2..4e6de1bf4db 100644
+index 16f52c6..2cb8b57 100644
 --- a/res/xml/more_security_privacy_settings.xml
 +++ b/res/xml/more_security_privacy_settings.xml
-@@ -235,7 +235,7 @@
+@@ -242,7 +242,7 @@
          android:key="window_ignore_secure"
          android:title="@string/ignore_window_secure_title"
          android:summary="@string/ignore_window_secure_summary"
 -        android:defaultValue="false"/>
 +        android:defaultValue="true"/>
  
-         <Preference
-             android:key="hide_applist_setting"
-@@ -247,7 +247,7 @@
-             android:key="hide_screen_capture_status"
-             android:title="@string/hide_screen_capture_status_title"
-             android:summary="@string/hide_screen_capture_status_summary"
--            android:defaultValue="false"/>
-+            android:defaultValue="true"/>
+     <Preference
+         android:key="hide_applist_setting"
+@@ -254,7 +254,7 @@
+         android:key="hide_screen_capture_status"
+         android:title="@string/hide_screen_capture_status_title"
+         android:summary="@string/hide_screen_capture_status_summary"
+-        android:defaultValue="false"/>
++        android:defaultValue="true"/>
  
-         <Preference
-             android:key="hide_developer_status_settings"
--- 
-2.34.1
-
+     <Preference
+         android:key="hide_developer_status_settings"
