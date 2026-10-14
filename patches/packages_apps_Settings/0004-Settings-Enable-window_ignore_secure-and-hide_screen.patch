@@ -1,13 +1,16 @@
-From 38408f528e2b1c635e5f74f94be8aa44fd4fd629 Mon Sep 17 00:00:00 2001
+From dacaa4ab5c37a0112a68cb1dd527d57ac7e109ca Mon Sep 17 00:00:00 2001
 From: BlueHeart01 <sayankumbhakar123@gmail.com>
 Date: Mon, 6 Apr 2026 17:20:33 +0000
-Subject: [PATCH 5/5] Settings: Enable `window_ignore_secure` and
- `hide_screen_capture_status`  by default
+Subject: [PATCH 4/4] Settings: Enable `window_ignore_secure` and
+ `hide_screen_capture_status` by default
 
 Change-Id: I245a397ff84a6fbd3d111353e53833f9861595e6
 ---
+ res/xml/more_security_privacy_settings.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/res/xml/more_security_privacy_settings.xml b/res/xml/more_security_privacy_settings.xml
-index 16f52c6..2cb8b57 100644
+index 16f52c6ae8f..2cb8b577e99 100644
 --- a/res/xml/more_security_privacy_settings.xml
 +++ b/res/xml/more_security_privacy_settings.xml
 @@ -242,7 +242,7 @@
